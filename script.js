@@ -2,6 +2,7 @@ alert ("bienvenidos al cotizador, le pediremos algunos datos para personalizar s
 let precio = 1
 let nombreUsuario 
 let precioProductos
+let montoIva = 0.21
 // declaro variables globales
 let precioThinner = 1000
 let precioAgua = 2000
@@ -18,7 +19,7 @@ while (nombreUsuario === "") ;
  
 // pregunta si tiene descuento y declaro variable descuento para el cicuito if/else
 
-alert(  nombreUsuario + " tiene codigo de descuento por una compra anterior?")
+alert(  nombreUsuario + " ha realizado alguna compra anterior?")
 
 let descuento = prompt (" ingrese si o no") .toLowerCase()
 
@@ -41,27 +42,32 @@ function precioCalculado(precio1 , precio2) {
     return precio1 * precio2
     
 }
-// swuitch para eleccion de producto
+
+// function precioIva (parametro1 , parametro2){
+//     return parametro1 * parametro2
+// }
+// switch para eleccion de producto
    
 
-let eleccion = Number (prompt ("elija el producto 1 thinner 2 aguarras 3 diluyente 4 aceite de lino"))
+let eleccion = Number (prompt ("elija el producto 1 -- thinner  2 -- aguarras  3 -- diluyente  4 -- aceite de lino"))
 switch (eleccion) {
-    case 1: alert (" eligio thinner")
+    case 1: alert (" eligio thinner") 
     alert(" el precio es " + precioCalculado (precioProductos , precioThinner)) 
     // llamo a la variable que calcula px producto por descuento
         
         break;
 
     case 2: alert (" eligio aguarras")
-    alert(" el precio es " + precioProductos * precioAgua) 
+    alert(" el precio es " + precioCalculado (precioProductos , precioAgua))
+    
         
         break;    
     case 3: alert (" eligio diluyente")
-    alert(" el precio es " + precioProductos * precioDiluyente) 
+    alert(" el precio es " + precioCalculado (precioProductos , precioDiluyente))
         
         break;
      case 4: alert (" eligio aceite lino")
-         alert(" el precio es " + precioProductos * precioAceiteLino) 
+         alert(" el precio es " + precioCalculado (precioProductos , precioAceiteLino))
         
         break;
 
