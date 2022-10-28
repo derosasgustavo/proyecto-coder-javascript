@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <main class="pantalla__principal"><h2> LISTADO DE PRODUCTOS</h2>
+        <section class="productos"> 
+            <ol class="productos__ofrecidos">
+                <li class="producto__ofrecido" id="producto0"></li>
+                <li class="producto__ofrecido" id="producto1"></li>
+                <li class="producto__ofrecido" id="producto2"></li>
+                <li class="producto__ofrecido" id="producto3"></li>
+                <li class="producto__ofrecido" id="producto4"></li>
+                <li class="producto__ofrecido" id="producto5"></li>
+                <li class="producto__ofrecido" id="producto6"></li>
+                <li class="producto__ofrecido" id="producto7"></li>
+                <li class="producto__ofrecido" id="producto8"></li>
+                <li class="producto__ofrecido" id="producto9"></li>
+            </ol>
 
-    <script src="./script.js"></script>
-    <script src= "./ejercicio.js"></script>
-</body>
+        </section>
+        <section>
+            <h2> Producto Eliminado </h2>
+            <article class="productos__eliminados" id="productos__eliminado"></article>
+        </section>
+        <section>
+            <h2> Producto Filtrados </h2>
+            <article class="productos__filtrados" id="productos__filtrado">
+                <ol id="productos_filtrados_lista"> </ol>
+            </article>
+        </section>
+        <section>
+          <h2> Carrito </h2>
+          <article class="productos__carrito" id="productos__carrito">
+              <ol id="productos_carrito"> </ol>
+          </article>
+          <span>
+            <h3> dinero gastado en carrito</h3>
+            <div> </div>
+          </span>
+
+      </section>
+    </main>
+
+    <script src="ecommerce.js"></script>
+  </body>
 </html>
