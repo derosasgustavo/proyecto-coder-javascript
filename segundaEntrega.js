@@ -55,10 +55,11 @@ function filtarPorPrecio() {   //funcion 1 filtar por precio FUNCIONA
     (producto) => producto.precio < eleecionPrecioFiltrado
   );
     
-  console.log(mercaderiaFiltrada);
+  console.table(mercaderiaFiltrada);
 }
 
-function filtrarPorStock() {   //funcion 2 filtar por stock FUNCIONA  
+function filtrarPorStock() {//funcion 2 filtar por stock FUNCIONA
+  
 
   let eleecionStockFiltrado = parseInt(
     prompt(`filtrar por productos con un stock menor a (se ver por consola)`)
@@ -75,9 +76,9 @@ function quitarProducto() {     //EL USUARIO ELIGE PRODUCTO Y LO ELIMINA FUNCONA
     array.splice(numero , 1);
   }
 
-  alert(`identifique el indice del producto a eliminar`);
+  alert(`identifique id del producto a eliminar`);
   let eleccionNumeroEliminar = parseInt(
-    prompt(`numero de indice del producto a eliminar`)
+    prompt(`numero de id del producto a eliminar`)
   );
 
 
@@ -160,100 +161,97 @@ function quitarProducto() {     //EL USUARIO ELIGE PRODUCTO Y LO ELIMINA FUNCONA
  
 }
 
-function compraProducto(eleccionProducto) { // COMPRA MERCADERIA LO IMPRIME PANTALLA RESTA STOCK CREA ARRAY CARRITO Y ARRAY PRECIO CARRITO
+function compraProducto(eleccionProducto) {
+  // COMPRA MERCADERIA LO IMPRIME PANTALLA RESTA STOCK CREA ARRAY CARRITO Y ARRAY PRECIO CARRITO
   carritoCompras.push(mercaderia[eleccionProducto]);
   alert(`se agrego ${mercaderia[eleccionProducto].nombre} al carrito`);
   precioCarrito.push(mercaderia[eleccionProducto].precio);
   mercaderia[eleccionProducto].restaStock();
-  
 }
-function agregarCarrito() {  //AGREGA PRODUCTO AL ARRAY CARRITO Y AL ARRAY PRECIO CARRITO
+function agregarCarrito() {
+  //AGREGA PRODUCTO AL ARRAY CARRITO Y AL ARRAY PRECIO CARRITO
 
-  
-  let eleccionProducto = parseInt(prompt(`elija el producto (del 0 al 9)  escriba 99 para terminar`));
+  let eleccionProducto = parseInt(
+    prompt(`elija el producto (del 0 al 9)  escriba 99 para terminar`)
+  );
 
-  while ( eleccionProducto !== 99){
+  while (eleccionProducto !== 99) {
+    switch (eleccionProducto) {
+      case 0:
+        compraProducto(eleccionProducto);
 
-  switch (eleccionProducto) {
-    case 0:
-      compraProducto(eleccionProducto)
+        break;
 
-      break;
+      case 1:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 1: 
-      compraProducto(eleccionProducto)
-      break;
+      case 2:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 2:
-      compraProducto(eleccionProducto)
-      break;
+      case 3:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 3:
-      compraProducto(eleccionProducto)
-      break;
+      case 4:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 4:
-      compraProducto(eleccionProducto)
-      break;
+      case 5:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 5:
-      compraProducto(eleccionProducto)
-      break;
+      case 6:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 6:
-      compraProducto(eleccionProducto)
-      break;
+      case 7:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 7:
-      compraProducto(eleccionProducto)
-      break;
+      case 8:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 8:
-      compraProducto(eleccionProducto)
-      break;
+      case 9:
+        compraProducto(eleccionProducto);
+        break;
 
-    case 9:
-      compraProducto(eleccionProducto)
-      break;
+      default:
+        alert(`producto inexistente`);
+        break;
+    }
 
-    default: alert(`producto inexistente`)
-      break;
+    eleccionProducto = parseInt(
+      prompt(`elija el producto (del 0 al 9)  escriba 99 para terminar`)
+    );
   }
-
-  eleccionProducto = parseInt(prompt(`elija el producto (del 0 al 9)  escriba 99 para terminar`));
-}
-  
 }
 
-for (let index = 0; index < mercaderia.length; index++) { //imprime en pantalla los prod
-  
-  let productoTexto = document.getElementById(`producto${index}`)
-  productoTexto.innerText = `${mercaderia[index].nombre } a ${mercaderia[index].precio}`
+for (let index = 0; index < mercaderia.length; index++) {//imprime en pantalla los prod
 
-  
+  let productoTexto = document.getElementById(`producto${index}`);
+  productoTexto.innerText = `${mercaderia[index].nombre} a ${mercaderia[index].precio}`;
 }
 
-function ordenarPorPrecio() { //ordena por precio
- 
+function ordenarPorPrecio() {//ordena por precio
+  
 
-
-  mercaderia.sort((function (a, b) {
+  mercaderia.sort(function (a, b) {
     if (a.precio > b.precio) {
       return 1;
     }
     if (a.precio < b.precio) {
       return -1;
     }
-    
+
     return 0;
-  }))
-  console.table(mercaderia)
-  
+  });
+  console.table(mercaderia);
 }
 function ordenarPorNombre() { //ordena por nombre
  
-
-
   mercaderia.sort((function (a, b) {
     if (a.nombre > b.nombre) {
       return 1;
@@ -269,33 +267,49 @@ function ordenarPorNombre() { //ordena por nombre
 }
 
 function encontrar() { // busca un producto por su nombre y lo imprime en consola FUNCIONA
-  let productoBuscado = prompt(`ingrese el nombre del producto a buscar`)
-  const productoEncontrado =  mercaderia.find((el) => el.nombre === productoBuscado)
-  console.log (productoEncontrado)
-  
+ 
+  let productoBuscado = prompt(`ingrese el nombre del producto a buscar`);
+  const productoEncontrado = mercaderia.find(
+    (el) => el.nombre === productoBuscado
+  );
+  console.table(productoEncontrado);
 }
 function filtradoConIncludes() { // filtrado con includes y agregado de MAP ==> devuelve los elementos del array del includes
-  let eleccionUsuario = prompt (`busqueda por nombre`)
-const resultado = mercaderia.filter ((prdo) => prdo.nombre.includes (`${eleccionUsuario}`))
-const listadoNombres = resultado.map ((el) => el.nombre + " hay en stock " + el.stock)
-console.table (listadoNombres)
+ 
+  let eleccionUsuario = prompt(`busqueda por nombre`);
+  const resultado = mercaderia.filter((prdo) =>
+    prdo.nombre.includes(`${eleccionUsuario}`)
+  );
+  const listadoNombres = resultado.map(
+    (el) => el.nombre + " hay en stock " + el.stock
+  );
+  console.table(listadoNombres);
 }
 
-function revisionCarrtio(){// funcion revision de carrito con reduce y map
-  let revisionCarrito = prompt(`desea revisar su carrito de compras ingrese si o no`)
-  if (revisionCarrito == "si" ){
-   const resultadoCarrito = carritoCompras.map((el) => el.nombre + " " + " " +  el.precio)
-   console.log (`${resultadoCarrito}`)
-   let revisionMontoCarrito = prompt(`desea revisar el monto total de su carrito de compras ingrese si o no`)
-   if( revisionMontoCarrito == "si") { const montoTotalCarrito = precioCarrito.reduce((acumulador, elemento) => acumulador + elemento , 0)
-   console.log (`usted lleva gastados $ ${montoTotalCarrito} en su compra`)
+function revisionCarrtio() { // funcion revision de carrito con reduce y map
  
-   }
- 
+  let revisionCarrito = prompt(
+    `desea revisar su carrito de compras ingrese si o no`
+  );
+  if (revisionCarrito == "si") {
+    const resultadoCarrito = carritoCompras.map(
+      (el) => el.nombre + " " + " " + el.precio
+    );
+    console.log(`${resultadoCarrito}`);
+    let revisionMontoCarrito = prompt(
+      `desea revisar el monto total de su carrito de compras ingrese si o no`
+    );
+    if (revisionMontoCarrito == "si") {
+      const montoTotalCarrito = precioCarrito.reduce(
+        (acumulador, elemento) => acumulador + elemento,
+        0
+      );
+      console.log(`usted lleva gastados $ ${montoTotalCarrito} en su compra`);
+    }
+  } else {
+    alert(`programa terminado`);
   }
-  else{alert(`programa terminado`)
- }
- }
+}
  
 
 
