@@ -8,43 +8,35 @@
     <title>Document</title>
   </head>
   <body>
-    <main class="pantalla__principal"><h2> LISTADO DE PRODUCTOS</h2>
-        <section class="productos"> 
-            <ol class="productos__ofrecidos">
-                <li class="producto__ofrecido" id="producto0"></li>
-                <li class="producto__ofrecido" id="producto1"></li>
-                <li class="producto__ofrecido" id="producto2"></li>
-                <li class="producto__ofrecido" id="producto3"></li>
-                <li class="producto__ofrecido" id="producto4"></li>
-                <li class="producto__ofrecido" id="producto5"></li>
-                <li class="producto__ofrecido" id="producto6"></li>
-                <li class="producto__ofrecido" id="producto7"></li>
-                <li class="producto__ofrecido" id="producto8"></li>
-                <li class="producto__ofrecido" id="producto9"></li>
-            </ol>
+    <main class="pantalla__principal">
+      <h1 id="titulo__principal">PRODUCTOS QUIMICOS</h2>
+        <section  id="carrito__compras">
+          <div>
 
+          </div>
+          
+          
         </section>
-        <section>
-            <h2> Producto Eliminado </h2>
-            <article class="productos__eliminados" id="productos__eliminado"></article>
-        </section>
-        <section>
-            <h2> Producto Filtrados </h2>
-            <article class="productos__filtrados" id="productos__filtrado">
-                <ol id="productos_filtrados_lista"> </ol>
-            </article>
-        </section>
-        <section>
-          <h2> Carrito </h2>
-          <article class="productos__carrito" id="productos__carrito">
-              <ol id="productos_carrito"> </ol>
-          </article>
-          <span>
-            <h3> dinero gastado en carrito</h3>
-            <div> </div>
-          </span>
+      <section>
+        <h2 class="titulo__secundario"> LISTADO DE PRODUCTOS</h2>
+        <div class="seccion__buscado">
+        <span class="buscador"> <input type="text" name="" id="buscador__productos"> </span>
+        <span> <button id="boton_buscador"> buscar</button></span>
+       </div>
 
       </section>
+      <section class="productos" id="lista">
+        
+        
+      </section>
+      <section>
+        
+        <div>
+        <button id="limpiar__carrito" >Limpiar</button>
+        </div>
+       
+      </section>
+      
     </main>
 
     <script src="./segundaEntrega.js"></script>

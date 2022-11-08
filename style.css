@@ -1,4 +1,116 @@
-.pantalla__principal {
-    background-color: azure;
+
+.productos{ display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 15%;
+            width: 75%;
+            justify-content: space-between;
+            gap: 30px;
+            background-image: url(./images/);
+            margin-left: 13%;
+           }
+#titulo__principal{
+    display: flex;
+    justify-content: center;
+    }            
+h2{display: flex;
+    font-size:medium;
+justify-content: center;}
+
+.producto{
+    display: flex;
+    flex-direction: column;
+    height: 15%;
+            width: 20%;
+            border-radius: 90px;
+            border:2px inset #000;padding: 30px;
+            background-color: white;
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);   }
+
+.producto:hover {animation-delay: 1s;
+                -webkit-transform:scale(1.1);transform:scale(1.1);
+                border-radius: 5px;}
+            
+   
+
+.titulo__producto{ display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    }
+.imagen__producto{ display: flex;
+                     align-items: center;
+                    justify-content: center;
+                    height: 100px;
+                    width: 100px;
+                
+           }
+.imagen__tambor{display: flex;
+    justify-content: center;
 
 }
+.parrafo__producto{ font-size: 20px;
+                    margin-left: 10%;
+                    display: inline;}
+#carrito_aparece{ display: flex;
+                    flex-direction: row;}
+
+#limpiar__carrito{ position: sticky;
+                 top: 5%;
+                    right: 10%;}
+
+
+
+                
+.carrito__contenedor {
+                            background-color: blue;
+                            animation: myAnim 2s ease 0s 1 normal forwards;
+                            position: sticky;
+                            top: 5%}
+
+    @keyframes myAnim {
+        0% {
+            animation-timing-function: ease-in;
+            opacity: 0;
+            transform: translateY(-250px);
+        }
+    
+        38% {
+            animation-timing-function: ease-out;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        55% {
+            animation-timing-function: ease-in;
+            transform: translateY(-65px);
+        }
+    
+        72% {
+            animation-timing-function: ease-out;
+            transform: translateY(0);
+        }
+    
+        81% {
+            animation-timing-function: ease-in;
+            transform: translateY(-28px);
+        }
+    
+        90% {
+            animation-timing-function: ease-out;
+            transform: translateY(0);
+        }
+    
+        95% {
+            animation-timing-function: ease-in;
+            transform: translateY(-8px);
+        }
+    
+        100% {
+            animation-timing-function: ease-out;
+            transform: translateY(0);
+        }
+    }
+                   
+
