@@ -49,42 +49,55 @@ let contenedorProductos = document.getElementById(`lista`);
 let carrito = document.getElementById(`carrito__compras`);
 let botones = document.getElementsByClassName(`boton`);
 let cuentaTotal = document.getElementById(`carrito__total`)
+let avisoCarrito = document.getElementById("seccion__aviso__carrito")
+let montoCarrito = document.getElementById("monto__carrito")
+
 
 let carritoComprasGuardado = [];
 
 //RENDERIZA EL CARRITO GUARDADO EN LOCAL STORAGE
 if (localStorage.getItem(`carrito`)) {
+  avisoCarrito.innerHTML = `
+      <a href="#carrito__compras"><p class="aviso__carrito__invisible">Revise su carrito</p></a>`;
   carritoComprasGuardado = JSON.parse(localStorage.getItem("carrito"));
-  console.log(carritoComprasGuardado)
+  montoTotalCarrito()
   for (const producto of carritoComprasGuardado) {
     carrito.className = "carrito__contenedor";
     carrito.innerHTML += `<div id="carrito__aparece${producto.id}" class="producto__carrito__aparece">
    <p id="parrafo__carrito"> usted selecciono ${producto.nombre} </p>
    <p id ="precio__producto"> precio: $${producto.precio}  </p>
    </div>`;
-    
   }
- }
+}
 
 function renderizarProductos() {
   //FUNCION QUE RENDERIZA TODOS LOS PRODUCTOS DE ARRAY MERCADERIA
   for (const producto of mercaderia) {
     let productoListado = document.createElement(`div`);
-
     productoListado.className = "producto";
     productoListado.innerHTML = `<h2> ${producto.nombre} </h2>
                                 <div class="imagen__tambor"><img src=" images/tambores.jpg " class="imagen__producto"  ></img></div>
-                                
                                 <button class ="boton" id= "${producto.id}">agregar al carrito</button>`;
     contenedorProductos.appendChild(productoListado);
   }
 }
 renderizarProductos();
 
+// funcion que suma el total del carrito y lo muestra en pantalla
+
+function montoTotalCarrito() {
+  carritoMonto = carritoComprasGuardado.map((el) => el.precio);
+  let sumaCarrito = carritoMonto.reduce((acc, numero) => acc + numero);
+  montoCarrito.innerHTML = `
+  <p id="monto__final__carrito"> Monto total $ ${sumaCarrito} </p>`;
+}
+
 function botonCarrito() {
   // agrega los productos al carrito de compras y hace push al array carritocomprasguradado
   for (const boton of botones) {
     boton.onclick = (e) => {
+      avisoCarrito.innerHTML = `
+      <a href="#carrito__compras"><p class="aviso__carrito__invisible">Revise su carrito</p></a>`;
       const productoBuscado = mercaderia.find(
         (producto) => producto.id == e.target.id
       );
@@ -98,11 +111,10 @@ function botonCarrito() {
         nombre: productoBuscado.nombre,
         precio: productoBuscado.precio,
       });
-    
+      montoTotalCarrito();
       localStorage.setItem(`carrito`, JSON.stringify(carritoComprasGuardado));
     };
   }
-
 }
 botonCarrito();
 
@@ -113,7 +125,6 @@ buscadorProductosInput.oninput = () => {
   let productoARenderizarBuscador = mercaderia.filter((producto) =>
     producto.nombre.includes(buscadorProductosInput.value)
   );
-
   if (productoARenderizarBuscador == ``) {
     let productoVacio = document.getElementById(`lista`);
     productoVacio.innerHTML = `
@@ -121,14 +132,11 @@ buscadorProductosInput.oninput = () => {
   } else {
     let productoListado = document.getElementById(`lista`);
     productoListado.innerHTML = ``;
-
     for (const producto of productoARenderizarBuscador) {
       let productoListado = document.createElement(`div`);
-
       productoListado.className = "producto";
       productoListado.innerHTML = `<h2> ${producto.nombre} </h2>
                                 <img src=" images/tambores.jpg " class="imagen__producto"  ></img>
-                               
                                 <button class ="boton" id= "${producto.id}">agregar al carrito</button>`;
       contenedorProductos.appendChild(productoListado);
     }
@@ -140,7 +148,7 @@ buscadorProductosInput.oninput = () => {
 let colocarBoton = document.getElementsByClassName(`carrito__contenedor`);
 let botonLimpiarCarrito = document.getElementById(`limpiar__carrito`);
 botonLimpiarCarrito.onclick = () => {
-  (carrito.innerHTML = ``), (carrito.className = ``), (carritoComprasGuardado.splice(0)), (localStorage.clear(`carrito`));
+  (carrito.innerHTML = ``), (avisoCarrito.innerHTML = ``),(carrito.className = ``), (montoCarrito.innerHTML = ``),(carritoComprasGuardado.splice(0)), (localStorage.clear(`carrito`));
 };
 
 
@@ -150,10 +158,7 @@ botonLimpiarCarrito.onclick = () => {
     
   
   
-// let botonMontoCarrito = document.getElementById(`boton__seccion__thinner`)
-// botonMontoCarrito.onclick = () => {
-// console.log(carritoComprasGuardado)
-// carritoMonto = carritoComprasGuardado.map ((el) => el.precio)
-// console.log(carritoMonto)
-// let sumaCarrito = carritoMonto.reduce((acc,numero) => acc + numero);
-// console.log(sumaCarrito);
+
+
+
+
