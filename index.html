@@ -4,15 +4,100 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <title>Document</title>
   </head>
   <body>
     <main class="pantalla__principal">
-      <h1 id="titulo__principal">PRODUCTOS QUIMICOS</h2>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar fixed-top navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a><img src="./images/logo2-removebg-preview.png" alt="Bootstrap" width="30" height="24"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Empresa">Empresa</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Productos
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Ferreteria y Pinturerias</a></li>
+                      <li><a class="dropdown-item" href="#">Imprentas y Graficas</a></li>
+                      <li><a class="dropdown-item" href="#">Productos Industriales</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Contacto">Contacto</a>
+                  </li>
+                  
+                </ul>
+                <div class="iconos-contacto-navbar">
+                    <div> <img src="./images/iconomail.png" alt="icono de mail"> <a class="direccion-mail-header"> geoproductosquimicos@hotmail.com</a> </div>
+                
+                    <div> <a href="https://www.google.com.ar/maps/place/Geo+S.r.l./@-32.8205329,-68.8106148,18z/data=!4m5!3m4!1s0x967e08fa2bca65df:0xab1d34470d52281c!8m2!3d-32.8206206!4d-68.8110682" ><img src="./images\iconoubicacion.png" alt="icono de ubicacion" class="ubicacion-empresa-header"> Parque Industrial las Heras, Mendoza </a> </div>
+    
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
+    
+    
+    <body class="body-principal">
+        <section class="seccion-principal">
+            <div class="seccion-principal-imagen">
+            <h1 class="seccion-principal-titulo-principal"><b>GEO</b></h1> 
+            <h2 class="seccion-principal-titulo-secundario">Productos Quimicos</h2>
+            </div>
+    
+        </section>
+    
+        <section class="seccion-principal-subtitulo">
+           <h2> Dilyentes, Thinner y Aguarras</h2>
+        </section>
+    
+        <main>
+          
+            <div class="row">
+           
+                <div class="card" style="width: 18rem;">
+                  <img src="./images/Pinturas.jpg" class="card-img-top" alt="botes de pintura">
+                  <div class="card-body">
+                    <h5 class="card-title">Pinturerías y Ferreterías</h5>
+                    <p class="card-text">Thinner, aguarrás, diluyentes y aceite de Lino para pinturerías y ferreterías</p>
+                    <a href="#jajaja" class="btn btn-primary" id="boton__ferreteria">Ver productos</a>
+                  </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                  <img src="./images/industria grafica.jpg" class="card-img-top" alt="maquina industria grafica">
+                  <div class="card-body">
+                    <h5 class="card-title">Industria gráfica e Imprentas</h5>
+                    <p class="card-text">Diluyentes especiales para la industria gráfica.</p>
+                    <a href="#" class="btn btn-primary" id="boton__industria__grafica">Ver productos</a>
+                  </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                  <img src="./images/industria.jpg" class="card-img-top" alt="industria trabajando">
+                  <div class="card-body">
+                    <h5 class="card-title">Diluyentes para Industria</h5>
+                    <p class="card-text">Somos fabricantes y mayoristas de diluyentes y solventes para distintas Industrias</p>
+                    <a href="#" class="btn btn-primary" id="boton__industria__general">Ver productos</a>
+                  </div>
+                </div>
+               
+                </div>
         
       <section>
-        <h2 class="titulo__secundario"> LISTADO DE PRODUCTOS</h2>
+        
         <div id="seccion__buscado">           
         <span class="buscador"> <input type="text" name="" id="buscador__productos"> BUSQUEDA</span>
         </div> 
@@ -24,6 +109,10 @@
         
         
       </section>
+
+      <div class="limpieza__carrito">
+        <button id="limpiar__carrito" >Limpiar carrito</button>
+        </div>
       <section  id="carrito__compras">
         <div id="carrito__total">
 
@@ -33,20 +122,21 @@
       </section>
       <section>
         
-        <div>
-        <button id="limpiar__carrito" >Limpiar carrito</button>
-        </div>
+        
         <div>
           <p id="monto__carrito"></p>
         </div>
        
       </section>
       
-      
+      <section id="opiniones__clientes">
+
       </section>
       
     </main>
 
-    <script src="./segundaEntrega.js"></script>
+    <script src="./js/segundaEntrega.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script> 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

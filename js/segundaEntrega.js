@@ -48,40 +48,53 @@ let buscadorProductosInput = document.getElementById(`buscador__productos`);
 let contenedorProductos = document.getElementById(`lista`);
 let carrito = document.getElementById(`carrito__compras`);
 let botones = document.getElementsByClassName(`boton`);
-let cuentaTotal = document.getElementById(`carrito__total`)
-let avisoCarrito = document.getElementById("seccion__aviso__carrito")
-let montoCarrito = document.getElementById("monto__carrito")
-
-
+let cuentaTotal = document.getElementById(`carrito__total`);
+let avisoCarrito = document.getElementById("seccion__aviso__carrito");
+let montoCarrito = document.getElementById("monto__carrito");
+let botonRenderizadoProductosFerreteria =
+  document.getElementById(`boton__ferreteria`);
+let opiniones = document.getElementById(`opiniones__clientes`);
 let carritoComprasGuardado = [];
+
+fetch(`./opiniones.json`)
+  .then((response) => response.json())
+  .then((arrayOpiniones) => {
+    for (const opinion of arrayOpiniones) {
+      opiniones.innerHTML += `<div class="opinion__cliente"> 
+  <h6>" ${opinion.nombre} " </h6>
+  <p> ${opinion.opinion} </p>  
+  </div>`;
+    }
+  });
 
 //RENDERIZA EL CARRITO GUARDADO EN LOCAL STORAGE
 if (localStorage.getItem(`carrito`)) {
   avisoCarrito.innerHTML = `
       <a href="#carrito__compras"><p class="aviso__carrito__invisible">Revise su carrito</p></a>`;
   carritoComprasGuardado = JSON.parse(localStorage.getItem("carrito"));
-  montoTotalCarrito()
-  for (const producto of carritoComprasGuardado) {
+  montoTotalCarrito();
+  for (const { nombre, id, precio } of carritoComprasGuardado) {
     carrito.className = "carrito__contenedor";
-    carrito.innerHTML += `<div id="carrito__aparece${producto.id}" class="producto__carrito__aparece">
-   <p id="parrafo__carrito"> usted selecciono ${producto.nombre} </p>
-   <p id ="precio__producto"> precio: $${producto.precio}  </p>
+    carrito.innerHTML += `<div id="carrito__aparece${id}" class="producto__carrito__aparece">
+   <p id="parrafo__carrito"> usted selecciono ${nombre} </p>
+   <p id ="precio__producto"> precio: $${precio}  </p>
    </div>`;
   }
 }
-
-function renderizarProductos() {
+// puedo tomar los botones de las cards, y que el click ejecute la funcion renderizar, primero limpio el contenedor y depsues
+// ejecuto la funcion pasandole el array como parametro xej renderizarProductos(carritoComprasGuardado);
+function renderizarProductos(mercaderia) {
   //FUNCION QUE RENDERIZA TODOS LOS PRODUCTOS DE ARRAY MERCADERIA
-  for (const producto of mercaderia) {
+  for (const { nombre, id } of mercaderia) {
     let productoListado = document.createElement(`div`);
     productoListado.className = "producto";
-    productoListado.innerHTML = `<h2> ${producto.nombre} </h2>
+    productoListado.innerHTML = `<h2 class="titulo__producto"> ${nombre} </h2>
                                 <div class="imagen__tambor"><img src=" images/tambores.jpg " class="imagen__producto"  ></img></div>
-                                <button class ="boton" id= "${producto.id}">agregar al carrito</button>`;
+                                <button class ="boton" id= "${id}">agregar al carrito</button>`;
     contenedorProductos.appendChild(productoListado);
   }
 }
-renderizarProductos();
+renderizarProductos(mercaderia);
 
 // funcion que suma el total del carrito y lo muestra en pantalla
 
@@ -96,20 +109,35 @@ function botonCarrito() {
   // agrega los productos al carrito de compras y hace push al array carritocomprasguradado
   for (const boton of botones) {
     boton.onclick = (e) => {
-      avisoCarrito.innerHTML = `
-      <a href="#carrito__compras"><p class="aviso__carrito__invisible">Revise su carrito</p></a>`;
       const productoBuscado = mercaderia.find(
         (producto) => producto.id == e.target.id
       );
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "center",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: "success",
+        title: "Producto agregado al carrito",
+      });
+      const { id, nombre, precio } = productoBuscado; // desestructurando a medias
       carrito.className = "carrito__contenedor";
-      carrito.innerHTML += `<div id="carrito__aparece${productoBuscado.id}" class="producto__carrito__aparece">
-   <p id="parrafo__carrito"> usted selecciono ${productoBuscado.nombre} </p>
-   <p id ="precio__producto"> precio: $${productoBuscado.precio}  </p>
+      carrito.innerHTML += `<div id="carrito__aparece${id}" class="producto__carrito__aparece">
+   <p id="parrafo__carrito"> usted selecciono ${nombre} </p>
+   <p id ="precio__producto"> precio: $${precio}  </p>
    </div>`;
       carritoComprasGuardado.push({
-        id: productoBuscado.id,
-        nombre: productoBuscado.nombre,
-        precio: productoBuscado.precio,
+        id: id,
+        nombre: nombre,
+        precio: precio,
       });
       montoTotalCarrito();
       localStorage.setItem(`carrito`, JSON.stringify(carritoComprasGuardado));
@@ -132,12 +160,12 @@ buscadorProductosInput.oninput = () => {
   } else {
     let productoListado = document.getElementById(`lista`);
     productoListado.innerHTML = ``;
-    for (const producto of productoARenderizarBuscador) {
+    for (const { nombre, id } of productoARenderizarBuscador) {
       let productoListado = document.createElement(`div`);
       productoListado.className = "producto";
-      productoListado.innerHTML = `<h2> ${producto.nombre} </h2>
+      productoListado.innerHTML = `<h2 class="titulo__producto"> ${nombre} </h2>
                                 <img src=" images/tambores.jpg " class="imagen__producto"  ></img>
-                                <button class ="boton" id= "${producto.id}">agregar al carrito</button>`;
+                                <button class ="boton" id= "${id}">agregar al carrito</button>`;
       contenedorProductos.appendChild(productoListado);
     }
     botonCarrito();
@@ -148,17 +176,11 @@ buscadorProductosInput.oninput = () => {
 let colocarBoton = document.getElementsByClassName(`carrito__contenedor`);
 let botonLimpiarCarrito = document.getElementById(`limpiar__carrito`);
 botonLimpiarCarrito.onclick = () => {
-  (carrito.innerHTML = ``), (avisoCarrito.innerHTML = ``),(carrito.className = ``), (montoCarrito.innerHTML = ``),(carritoComprasGuardado.splice(0)), (localStorage.clear(`carrito`));
+  (carrito.innerHTML = ``),
+    (avisoCarrito.innerHTML = ``),
+    (carrito.className = ``),
+    (montoCarrito.innerHTML = ``),
+    carritoComprasGuardado.splice(0),
+    localStorage.clear(`carrito`);
+  Swal.fire(`usted limpio su carrito`);
 };
-
-
-
-
-
-    
-  
-  
-
-
-
-

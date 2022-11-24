@@ -1,0 +1,7 @@
+[
+    {"id":0, "nombre": "hernan", "negocio": "ferreteria", "opinion": "muy confiables, y de excelente calidad"},
+    {"id":1, "nombre": "gustavo", "negocio": "pintureria", "opinion": "buena realcion precio/calidad"},
+    {"id":2, "nombre": "pedro", "negocio": "ferreteria", "opinion": "las entregas son muy rapidas"},
+    {"id":3, "nombre": "juan", "negocio": "industria", "opinion": "muy serios, llevamos años como clientes"},
+    {"id":4, "nombre": "luis", "negocio": "industria", "opinion": "nunca tuvimos inconvenientes con sus productos"}
+]

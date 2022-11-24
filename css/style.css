@@ -1,14 +1,93 @@
 body{background-color: rgb(192, 192, 192);}
-.productos {
+
+.navbar-collapse {
+  justify-content: space-between; }
+
+  .iconos-contacto-navbar {
     display: flex;
     flex-direction: row;
+    color: antiquewhite;
+    font-size: 0.9em;
+    gap: 10px; }
+ .ubicacion-empresa-header {
+      height: 32px;
+      width: 32px; }
+
+      .telefono-empresa-header {
+        height: 32px;
+        width: 32px; }
+
+        .seccion-principal {
+          margin-top: 5%;
+          height: 10em;
+          background-image: url(../images/glassware-blue-liquid-equipment-chemical-1474018.jpg);
+          opacity: 0.9;
+          background-size: auto;
+          background-position: center;
+          display: flex;
+          align-items: center; }
+          .seccion-principal .seccion-principal-titulo-principal {
+            font-size: 4em;
+            color: antiquewhite;
+            animation-duration: 2s;
+            animation-name: slidein; }
+        
+        @keyframes slidein {
+          from {
+            margin-left: 100%; }
+          to {
+            margin-left: 0%; } }
+          .seccion-principal .seccion-principal-titulo-secundario {
+            color: antiquewhite;
+            animation-duration: 3s;
+            animation-name: slidein; }
+        
+        @keyframes slidein {
+          from {
+            margin-left: 100%; }
+          to {
+            margin-left: 0%; } }
+          .seccion-principal .seccion-principal-imagen {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            text-shadow: 5px 5px 10px #1f50f2; }
+  
+            .seccion-principal-subtitulo {
+              color: antiquewhite;
+              text-shadow: 5px 5px 10px #1f50f2;
+              margin-left: auto;
+              margin-right: auto;
+              display: flex;
+              justify-content: space-around;
+              margin-top: 1.5%;
+              margin-bottom: 1.5%; }
+
+              main .row {
+                justify-content: space-evenly;
+                gap: 20px; }
+                main .row .card {
+                  transition: ease-in .4s;
+                  box-shadow: 6px 6px 6px #8f8fff; }
+                main .row .card:hover {
+                  transform: scale(1.1); }
+                main .row .card-img-top {
+                  height: 12rem; }
+            
+.productos {
+ 
+    display: flex;
+
     flex-wrap: wrap;
-    height: 15%;
+  
     width: 75%;
-    justify-content: space-between;
-    gap: 15px;
+   
+    gap: 30px;
     background-image: url(./images/);
-    margin-left: 13%;
+    margin-left: 15%;
+    font-size: small;
+
 }
 
 #titulo__principal {
@@ -18,8 +97,9 @@ body{background-color: rgb(192, 192, 192);}
 
 h2 {
     display: flex;
-    font-size: medium;
+    font-size: 15px;
     justify-content: center;
+      font-size: small;
 }
 
 
@@ -223,19 +303,25 @@ h2 {
     opacity: 1;
   }
 }
-
+#seccion__buscado{
+  display: flex;
+  justify-content: center;
+  padding: 1.5%;
+  background-color:#8f8fff;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
 .producto {
     display: flex;
     flex-direction: column;
-
+    font-size: small;
     width: 15%;
     border-radius: 10px;
    
     padding: 10px;
     background-color: white;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+   
+    box-shadow: 6px 6px 6px #8f8fff;
 }
 
 .producto:hover {
@@ -251,6 +337,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: small;
 }
 
 .imagen__producto {
@@ -272,17 +359,19 @@ h2 {
     font-size: 20px;
     margin-left: 10%;
     display: inline;
+    color:black;
 }
 
 #carrito_aparece {
     display: flex;
     flex-direction: row;
+    color: #000000
+
 }
 
-#limpiar__carrito {
-    position: sticky;
-    top: 5%;
-    right: 10%;
+.limpieza__carrito{
+  display: flex;
+  justify-content: space-around;
 }
 
 .producto__carrito__aparece{
@@ -294,18 +383,22 @@ h2 {
     background-color: rgb(122, 122, 239);
     animation: myAnim 2s ease 0s 1 normal forwards;
     position: sticky;
-    top: 5%
+    top: 5%;
+    max-width: 75%;
+    margin-left: 13%;
+    margin-top: 3%;
+    opacity: 0.7;
 }
 #monto__final__carrito{
   font-size: xx-large;
   background-color: aquamarine;
   display: inline;
   position:relative;
-  left:48%;
+  left:61%;
 font-family: sans-serif; 
 font-weight: 400; 
 color: #ffffff; 
-background:#ee0467;
+background:#d63779;
 padding: 20px;
 overflow: hidden;
 border-radius: 35px 0px 35px 0px;
@@ -362,3 +455,18 @@ font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
     }
 }
 
+#opiniones__clientes{
+  display:flex;
+  flex-direction: row;
+  margin-left: 13%;
+  margin-right: 13%;
+  margin-top: 7%;
+  
+}
+.opinion__cliente{
+  font-weight: 600;
+  max-width: 20%;
+  margin: 2%;
+  background-color: #8f8fff; 
+  opacity: 0.8;
+}
