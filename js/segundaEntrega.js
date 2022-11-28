@@ -27,7 +27,12 @@ const producto7 = new Productos(7, "THINNER ORO BOTELLA", 440, 1000);
 const producto8 = new Productos(8, "THINNER PREMIUM TAMBOR", 80000, 45);
 const producto9 = new Productos(9, "THINNER PREMIUM BOTELLA", 500, 990);
 const producto10 = new Productos(10, "THINNER LIMPIEZA TAMBOR", 60000, 100);
-const producto11 = new Productos(11, "DILUYENTE POLIURETANO", 130000, 23);
+const producto11 = new Productos(11,"DILUYENTE POLIURETANO TAMBOR",120000,23);
+const productoGrafica0 = new Productos(0,"DILUYENTE LPC 155 TAMBOR",80000,1000);
+const productoGrafica1 = new Productos(1,"DILUYENTE ADH 307 TAMBOR",90000,45);
+const productoGrafica2 = new Productos(2, "DILUYENTE FMP50 TAMBOR", 98000, 990);
+const productoGrafica3 = new Productos(3,"DILUYENTE POLIAMIDAS TAMBOR",78000, 100);
+const productoGrafica4 = new Productos(4,"DILUYENTE FLEXOGRAFICO TAMBOR", 89000,23);
 
 const mercaderia = [
   producto0,
@@ -44,6 +49,14 @@ const mercaderia = [
   producto11,
 ];
 
+const mercaderiaGrafica = [
+  productoGrafica0,
+  productoGrafica1,
+  productoGrafica2,
+  productoGrafica3,
+  productoGrafica4,
+];
+
 let buscadorProductosInput = document.getElementById(`buscador__productos`);
 let contenedorProductos = document.getElementById(`lista`);
 let carrito = document.getElementById(`carrito__compras`);
@@ -53,8 +66,24 @@ let avisoCarrito = document.getElementById("seccion__aviso__carrito");
 let montoCarrito = document.getElementById("monto__carrito");
 let botonRenderizadoProductosFerreteria =
   document.getElementById(`boton__ferreteria`);
+let botonRenderizadoProductosIndustriaGrafica = document.getElementById(
+  `boton__industria__grafica`
+);
 let opiniones = document.getElementById(`opiniones__clientes`);
 let carritoComprasGuardado = [];
+
+botonRenderizadoProductosFerreteria.onclick = () => {
+  contenedorProductos.innerHTML = ``;
+  renderizarProductos(mercaderia);
+  buscador(mercaderia);
+  botonCarrito(mercaderia);
+};
+botonRenderizadoProductosIndustriaGrafica.onclick = () => {
+  contenedorProductos.innerHTML = ``;
+  renderizarProductos(mercaderiaGrafica);
+  buscador(mercaderiaGrafica);
+  botonCarrito(mercaderiaGrafica);
+};
 
 fetch(`./opiniones.json`)
   .then((response) => response.json())
@@ -94,7 +123,6 @@ function renderizarProductos(mercaderia) {
     contenedorProductos.appendChild(productoListado);
   }
 }
-renderizarProductos(mercaderia);
 
 // funcion que suma el total del carrito y lo muestra en pantalla
 
@@ -105,7 +133,7 @@ function montoTotalCarrito() {
   <p id="monto__final__carrito"> Monto total $ ${sumaCarrito} </p>`;
 }
 
-function botonCarrito() {
+function botonCarrito(mercaderia) {
   // agrega los productos al carrito de compras y hace push al array carritocomprasguradado
   for (const boton of botones) {
     boton.onclick = (e) => {
@@ -144,33 +172,33 @@ function botonCarrito() {
     };
   }
 }
-botonCarrito();
 
 //renderizado del input
-
-buscadorProductosInput.oninput = () => {
-  // renderiza los productos del imput
-  let productoARenderizarBuscador = mercaderia.filter((producto) =>
-    producto.nombre.includes(buscadorProductosInput.value)
-  );
-  if (productoARenderizarBuscador == ``) {
-    let productoVacio = document.getElementById(`lista`);
-    productoVacio.innerHTML = `
+function buscador(mercaderia) {
+  buscadorProductosInput.oninput = () => {
+    // renderiza los productos del imput
+    let productoARenderizarBuscador = mercaderia.filter((producto) =>
+      producto.nombre.includes(buscadorProductosInput.value)
+    );
+    if (productoARenderizarBuscador == ``) {
+      let productoVacio = document.getElementById(`lista`);
+      productoVacio.innerHTML = `
     <h2 class ="titulo__producto__inexistente"> LO LAMENTAMOS, NO TENEMOS ESE PRODUCTO </H2>`;
-  } else {
-    let productoListado = document.getElementById(`lista`);
-    productoListado.innerHTML = ``;
-    for (const { nombre, id } of productoARenderizarBuscador) {
-      let productoListado = document.createElement(`div`);
-      productoListado.className = "producto";
-      productoListado.innerHTML = `<h2 class="titulo__producto"> ${nombre} </h2>
+    } else {
+      let productoListado = document.getElementById(`lista`);
+      productoListado.innerHTML = ``;
+      for (const { nombre, id } of productoARenderizarBuscador) {
+        let productoListado = document.createElement(`div`);
+        productoListado.className = "producto";
+        productoListado.innerHTML = `<h2 class="titulo__producto"> ${nombre} </h2>
                                 <img src=" images/tambores.jpg " class="imagen__producto"  ></img>
                                 <button class ="boton" id= "${id}">agregar al carrito</button>`;
-      contenedorProductos.appendChild(productoListado);
+        contenedorProductos.appendChild(productoListado);
+      }
+      botonCarrito(mercaderia);
     }
-    botonCarrito();
-  }
-};
+  };
+}
 
 // BOTON QUE LIMPIA EL CARRITO
 let colocarBoton = document.getElementsByClassName(`carrito__contenedor`);
