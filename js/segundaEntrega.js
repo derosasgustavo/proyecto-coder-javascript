@@ -33,6 +33,8 @@ const productoGrafica1 = new Productos(1,"DILUYENTE ADH 307 TAMBOR",90000,45);
 const productoGrafica2 = new Productos(2, "DILUYENTE FMP50 TAMBOR", 98000, 990);
 const productoGrafica3 = new Productos(3,"DILUYENTE POLIAMIDAS TAMBOR",78000, 100);
 const productoGrafica4 = new Productos(4,"DILUYENTE FLEXOGRAFICO TAMBOR", 89000,23);
+const productoIndustria0 = new Productos(0, "ACETATO DE ETILO TAMBOR", 120000, 100);
+const productoIndustria1 = new Productos( 1, "ACETATO DE BUTILO TAMBOR", 180000, 20);
 
 const mercaderia = [
   producto0,
@@ -56,6 +58,10 @@ const mercaderiaGrafica = [
   productoGrafica3,
   productoGrafica4,
 ];
+const mercaderiaIndustria = [
+  productoIndustria0,
+  productoIndustria1,
+];
 
 let buscadorProductosInput = document.getElementById(`buscador__productos`);
 let contenedorProductos = document.getElementById(`lista`);
@@ -69,6 +75,9 @@ let botonRenderizadoProductosFerreteria =
 let botonRenderizadoProductosIndustriaGrafica = document.getElementById(
   `boton__industria__grafica`
 );
+let botonRenderizadoProductosIndustriaGeneral = document.getElementById (
+  `boton__industria__general`
+)
 let opiniones = document.getElementById(`opiniones__clientes`);
 let carritoComprasGuardado = [];
 
@@ -83,6 +92,12 @@ botonRenderizadoProductosIndustriaGrafica.onclick = () => {
   renderizarProductos(mercaderiaGrafica);
   buscador(mercaderiaGrafica);
   botonCarrito(mercaderiaGrafica);
+};
+botonRenderizadoProductosIndustriaGeneral.onclick = () => {
+  contenedorProductos.innerHTML = ``;
+  renderizarProductos(mercaderiaIndustria);
+  buscador(mercaderiaIndustria);
+  botonCarrito(mercaderiaIndustria);
 };
 
   fetch(`./opiniones.json`)
