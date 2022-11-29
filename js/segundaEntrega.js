@@ -85,16 +85,28 @@ botonRenderizadoProductosIndustriaGrafica.onclick = () => {
   botonCarrito(mercaderiaGrafica);
 };
 
-fetch(`./opiniones.json`)
+  fetch(`./opiniones.json`)
   .then((response) => response.json())
   .then((arrayOpiniones) => {
     for (const opinion of arrayOpiniones) {
+      setTimeout(() =>(
       opiniones.innerHTML += `<div class="opinion__cliente"> 
   <h6>" ${opinion.nombre} " </h6>
   <p> ${opinion.opinion} </p>  
-  </div>`;
-    }
+  </div>`) , 3000)
+  opiniones.innerHTML = ``}
   });
+
+  function opinionesRenderizadas() {
+    opiniones.innerHTML += `<div class="opinion__cliente"> 
+  <h6>" ${opinion.nombre} " </h6>
+  <p> ${opinion.opinion} </p>  
+  </div>`
+  opiniones.innerHTML =``
+    
+  }
+  
+  
 
 //RENDERIZA EL CARRITO GUARDADO EN LOCAL STORAGE
 if (localStorage.getItem(`carrito`)) {
@@ -144,7 +156,7 @@ function botonCarrito(mercaderia) {
         toast: true,
         position: "center",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener("mouseenter", Swal.stopTimer);
